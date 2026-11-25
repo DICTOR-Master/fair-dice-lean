@@ -1,0 +1,235 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+# formalization.yaml v0.4 (Palomar submission kit; source rule: SOURCE-BASED, the paper #112 "formalizes")
+version: "v0.4"
+
+project:
+  name: "Fair Dice from Curvature: Alexandrov's Theorem, Machine-Checked"
+  description: >-
+    DICTO's paper "Fair Dice — The Aequi: Enumerating the Innumerable"
+    (Zenodo, 2026) proves, as its Theorem A (a), that a set of N distinct
+    face directions, not all in one closed hemisphere, carries a die that is
+    fair about its centre (every face seen under the solid angle 4 pi / N)
+    exactly when the directions satisfy Alexandrov's condition for equal
+    masses, and that the die is then unique up to scale. The proof passes to
+    the polar polytope, whose corners lie on the face directions; the
+    paper's Lemma 1 shows that the solid angle of a face equals the integral
+    Gauss curvature of the polar polytope at the matching corner, so Theorem
+    A (a) is Alexandrov's theorem on prescribed integral curvature
+    (Alexandrov 1942, in the polytope case proved by Oliker 2007 and
+    Bertrand 2016) for equal curvatures. This entry proves in Lean the
+    polyhedral Alexandrov theorem itself (existence if and only if the
+    curvatures sum to 4 pi and Alexandrov's condition holds; uniqueness up to
+    scaling about the origin), Lemma 1 (the polar identity) and Theorem A
+    (a) (existence and uniqueness of the fair die). Existence follows
+    Oliker's variational route: a maximizer of his functional exists by
+    continuity and coercivity, and at a maximizer every corner has the
+    prescribed curvature. Uniqueness is by the maximum principle.
+    Not formalized: Theorem A (b) (the symmetry group of the die) and (c)
+    (the centre as centroid), the finite test for equal masses, and the rest
+    of the paper (the enumeration). Audience: researchers on convex
+    polytopes, the Minkowski and Alexandrov problems and fair dice, and
+    Mathlib contributors.
+  authors:
+    - name: "DICTO"
+      orcid: "0009-0001-2620-2036"
+      github: "DICTOR-Master"
+  license: "Apache-2.0"
+  responsible_maintainers:
+    - name: "DICTO"
+      orcid: "0009-0001-2620-2036"
+      github: "DICTOR-Master"
+
+classification:
+  arxiv: ["math.MG"]
+  msc2020: ["52B10", "53A05", "52A15", "03B35"]
+
+sources:
+  - title: "Fair Dice — The Aequi: Enumerating the Innumerable"
+    authors:
+      - name: "DICTO"
+        orcid: "0009-0001-2620-2036"
+        github: "DICTOR-Master"
+    id: "doi:10.5281/zenodo.24383314"
+    type: "paper"
+    location: "Zenodo, version 1 (doi:10.5281/zenodo.24383315, 20 November 2026); Lemma 1, Theorem A (a)"
+    relationship: "formalizes"
+    note: >-
+      Read (the statements formalized and their proofs). Lemma 1 is
+      solidAngle_eq_curvature; Theorem A (a) is fair_die_iff (existence) and
+      fair_die_unique (uniqueness up to scale). The paper takes Alexandrov's
+      theorem from the sources below; the entry proves it as alexandrov_iff
+      and alexandrov_unique.
+    author_endorsement: "participated"
+  - title: "Existence and uniqueness of a convex surface with a given integral curvature"
+    authors:
+      - "A. D. Alexandrov"
+    type: "paper"
+    location: "C. R. (Doklady) Acad. Sci. URSS (N.S.) 35 (1942) 131-134"
+    relationship: "background"
+    note: >-
+      Cited only (not read). Alexandrov's theorem on prescribed integral
+      Gauss curvature, which alexandrov_iff and alexandrov_unique state and
+      prove in the polytope case. The theorem is Alexandrov's; the entry
+      claims only its Lean proof.
+    author_endorsement: "n/a"
+  - title: "Embedding S^n into R^{n+1} with given integral Gauss curvature and optimal mass transport on S^n"
+    authors:
+      - "V. Oliker"
+    id: "arXiv:math/0701398"
+    type: "paper"
+    location: "Advances in Mathematics 213 (2007) 600-620; Theorems 1, 4 and 6"
+    relationship: "background"
+    note: >-
+      Read (Theorems 1, 4 and 6, for #112). The polytope case of Alexandrov's
+      theorem and the variational functional whose maximizer gives existence;
+      the Lean existence proof follows this route (Variational.lean,
+      Functional.lean, Coercive.lean, Existence.lean).
+    author_endorsement: "n/a"
+  - title: "Prescription of Gauss curvature using optimal mass transport"
+    authors:
+      - "J. Bertrand"
+    id: "arXiv:1505.04821"
+    type: "paper"
+    location: "Geometriae Dedicata 183 (2016) 81-99; Theorem 1.2, necessity at (3) of section 1.1"
+    relationship: "background"
+    note: >-
+      Read (Theorems 1.2 and 1.5, sections 1.1 and 1.3, for #112). The
+      statement of Alexandrov's condition and its necessity, as used in
+      Necessity.lean, Hemisphere.lean and Main.lean.
+    author_endorsement: "n/a"
+  - title: "Allgemeine Lehrsätze über die konvexen Polyeder"
+    authors:
+      - "H. Minkowski"
+    type: "paper"
+    location: "Nachrichten der Gesellschaft der Wissenschaften zu Göttingen (1897) 198-219"
+    relationship: "background"
+    note: >-
+      Cited only (not read). Minkowski's theorem for polytopes with
+      prescribed face normals and face areas, the companion of Alexandrov's
+      problem for curvatures; not formalized here.
+    author_endorsement: "n/a"
+  - title: "The Minkowski problem for polytopes"
+    authors:
+      - "D. A. Klain"
+    type: "paper"
+    location: "Advances in Mathematics 185 (2004) 270-288"
+    relationship: "background"
+    note: "Cited only (not read). A modern proof of Minkowski's theorem for polytopes."
+    author_endorsement: "n/a"
+
+related_formalizations: []
+
+status:
+  scope: >-
+    Formalized (Challenge, five theorems): alexandrov_iff (for distinct unit
+    vectors not all in one closed hemisphere and positive curvatures: a
+    polytope with corners on the rays and these curvatures exists if and
+    only if they sum to 4 pi and Alexandrov's condition holds);
+    alexandrov_unique (such a polytope is unique up to scaling about the
+    origin); solidAngle_eq_curvature (#112 Lemma 1); fair_die_iff and
+    fair_die_unique (#112 Theorem A (a)). The library also proves the
+    necessity half in the textbook form for spherically convex sets
+    (Alexandrov/Hemisphere.lean), not in the Challenge.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: []
+
+automation:
+  methods:
+    - method: "agent"
+      models: ["Claude Opus (Anthropic)"]
+      framework: "Claude Code (Opus)"
+      tool_setup: >-
+        A Claude Code agent wrote the definitions, the statements and the
+        proofs, and ran the Lake builds and the comparator against Mathlib
+        v4.35.0-rc2 on Linux compute machines.
+      cost:
+        wall_time: "about three days (22 to 24 November 2026), in milestones"
+        spend_usd: "subscription-based"
+        hardware: "local Linux machines"
+      prompting_notes: >-
+        DICTO found the result (paper #112), asked for it in Lean, and set the
+        order of the work: uniqueness first, then existence by Oliker's
+        variational route in small milestones, then the fair dice.
+  spend_usd: "subscription-based"
+  notes: >-
+    DICTO posed the formalization and directed the work; every definition,
+    statement and proof was written by the agent. Every build was checked by
+    a full recompilation and #print axioms (only propext, Classical.choice
+    and Quot.sound). No independent human line-by-line audit of the Lean
+    code has been made.
+
+fidelity:
+  divergences: >-
+    (1) The integral Gauss curvature at a point p of a set Q is three times
+    the volume of the normal cone {x | for all q in Q, <q,x> <= <p,x>}
+    inside the unit ball (curvature), which equals the area of the set of
+    outer unit normals at p; no measure on the sphere is used. The solid
+    angle of a face (solidAngle) is likewise three times the volume of the
+    cone of directions through that face inside the unit ball. (2) "Not all
+    in one closed hemisphere" is stated as: for every x /= 0 some n i has
+    <n i, x> > 0. (3) Alexandrov's condition (AlexandrovCondition) is stated
+    for every nonempty proper set I of the rays: the sum of the curvatures
+    over I is less than the area of the open pi/2-neighbourhood of those
+    rays. The papers state it for spherically convex sets; the library also
+    proves the necessity in that form (Alexandrov/Hemisphere.lean), but the
+    Challenge uses the form over sets of rays, and the equivalence of the
+    two forms is not formalized. (4) The prescribed
+    curvatures are positive (each corner is a corner); for the dice they are
+    all 4 pi / N. (5) The polytope with corners on the rays is the convex
+    hull of r i * n i (rayPolytope); the die is the intersection of the
+    half-spaces <n j, x> <= d j (die), and its polar has corners n j / d j.
+    (6) Uniqueness is up to scaling about the origin (r' = c r with c > 0,
+    and d' = c d for the dice).
+
+review:
+  status: "self-assessed"
+  reviewers:
+    - "none"
+  notes: >-
+    Every definition and statement in the Challenge is copied from the Lean
+    library (namespace Alexandrov renamed FairDice); the Solution is the
+    Challenge word for word with each proof transferred from the library.
+    The comparator was run locally with Lean's kernel, NanoDa and con-ron.
+    Literature: #112 was read; Oliker 2007 and Bertrand 2016 were read for
+    #112; Alexandrov 1942, Minkowski 1897 and Klain 2004 are cited only.
+    Formal search (24 November 2026): web searches on Alexandrov's theorem,
+    prescribed curvature and the Minkowski problem with Lean, Isabelle, Coq,
+    "formalized" and "proof assistant"; the Lean Zulip archive ("Main
+    Theorem of Polytope Theory", "Sofa problem may have been solved", the
+    convex polytopes thread); Mathlib v4.35.0-rc2; Isabelle HOL-Analysis
+    Polytope.thy and the AFP entry Euler's Polyhedron Formula; Coq-Polyhedra;
+    the HOL Light polytope library; Mizar and Metamath by web search only.
+    We found no earlier machine-checked proof of Alexandrov's theorem on
+    prescribed curvature, of Minkowski's theorem for polytopes, or of the
+    fair-die theorem; the nearest formal work is basic polytope theory.
+
+alignment:
+  namespace: "FairDice"
+  statements:
+    - source: "Alexandrov's theorem, polytope case (Oliker 2007, Theorems 4 and 6; Bertrand 2016, Theorem 1.2): existence"
+      lean: "FairDice.alexandrov_iff"
+      module: "Challenge"
+      status: "proved"
+    - source: "Alexandrov's theorem, polytope case: uniqueness up to scaling"
+      lean: "FairDice.alexandrov_unique"
+      module: "Challenge"
+      status: "proved"
+    - source: "#112, Lemma 1 (the polar identity)"
+      lean: "FairDice.solidAngle_eq_curvature"
+      module: "Challenge"
+      status: "proved"
+    - source: "#112, Theorem A (a), existence"
+      lean: "FairDice.fair_die_iff"
+      module: "Challenge"
+      status: "proved"
+    - source: "#112, Theorem A (a), uniqueness up to scale"
+      lean: "FairDice.fair_die_unique"
+      module: "Challenge"
+      status: "proved"
+
+acknowledgements: >-
+  Mathlib (measure theory, convex hulls, the volume of the Euclidean ball,
+  finite-dimensional separation); A. D. Alexandrov, whose theorem this is,
+  and V. Oliker and J. Bertrand, whose proofs of the polytope case the Lean
+  proof follows.

@@ -1,0 +1,18 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "FairDice.alexandrov_iff",
+    "FairDice.alexandrov_unique",
+    "FairDice.solidAngle_eq_curvature",
+    "FairDice.fair_die_iff",
+    "FairDice.fair_die_unique"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}
