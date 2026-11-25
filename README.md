@@ -6,13 +6,15 @@ Author: DICTO.
 
 Let `n 0, …, n (N-1)` be distinct unit vectors in 3-space, not all in one closed hemisphere. A polytope with corners
 on these rays has its corners at `r i • n i` with `r i > 0`; its curvature at a corner is the area of the outer unit
-normals there. A die with these face normals is `{x | ⟪n j, x⟫ ≤ d j for all j}` with `d j > 0`; it is fair about the
+normals there, defined in Lean as three times the volume of the normal cone inside the unit ball (the solid angle of a
+face is likewise three times the volume of the cone through it inside the unit ball). A die with these face normals is `{x | ⟪n j, x⟫ ≤ d j for all j}` with `d j > 0`; it is fair about the
 origin when every face is seen from the origin under the solid angle `4π / N`.
 
 - **Alexandrov's theorem, polytope case** (`alexandrov_iff`): for positive curvatures `κ j`, a polytope with
   corners on the rays and curvature `κ j` at corner `j` exists if and only if `Σ κ j = 4π` and Alexandrov's condition
   holds: for every nonempty proper set `I` of rays, `Σ_{i ∈ I} κ i` is less than the area of the directions within
-  π/2 of some ray in `I`.
+  π/2 of some ray in `I`. The condition is stated over sets of rays; its equivalence with the textbook form over
+  spherically convex sets is not formalized.
 - **Uniqueness** (`alexandrov_unique`): two such polytopes are equal up to scaling about the origin.
 - **#112 Lemma 1, the polar identity** (`solidAngle_eq_curvature`): the solid angle of face `k` of the die equals
   the curvature of the polar polytope (corners `n j / d j`) at its corner `n k / d k`.
@@ -27,7 +29,8 @@ follows Oliker's variational route; uniqueness is by the maximum principle.
 - `Alexandrov/`: the library (namespace `Alexandrov`).
 
 Toolchain `leanprover/lean4:v4.35.0-rc2`, Mathlib `v4.35.0-rc2`. The theorems depend only on the axioms `propext`,
-`Classical.choice` and `Quot.sound`. Neither `sorry` nor `native_decide` is used. Every Lean file uses the module
+`Classical.choice` and `Quot.sound`. `Challenge.lean` contains `sorry` by design (the statements only);
+`Solution.lean` and the library contain no `sorry`, and `native_decide` is not used. Every Lean file uses the module
 system.
 
 ## How to check

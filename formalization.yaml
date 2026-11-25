@@ -8,7 +8,8 @@ project:
     DICTO's paper "Fair Dice — The Aequi: Enumerating the Innumerable"
     (Zenodo, 2026) proves, as its Theorem A (a), that a set of N distinct
     face directions, not all in one closed hemisphere, carries a die that is
-    fair about its centre (every face seen under the solid angle 4 pi / N)
+    fair about the origin (every face seen from the origin under the solid
+    angle 4 pi / N)
     exactly when the directions satisfy Alexandrov's condition for equal
     masses, and that the die is then unique up to scale. The proof passes to
     the polar polytope, whose corners lie on the face directions; the
@@ -17,15 +18,22 @@ project:
     A (a) is Alexandrov's theorem on prescribed integral curvature
     (Alexandrov 1942, in the polytope case proved by Oliker 2007 and
     Bertrand 2016) for equal curvatures. This entry proves in Lean the
-    polyhedral Alexandrov theorem itself (existence if and only if the
-    curvatures sum to 4 pi and Alexandrov's condition holds; uniqueness up to
-    scaling about the origin), Lemma 1 (the polar identity) and Theorem A
+    polyhedral Alexandrov theorem with the condition stated over sets of
+    rays (existence if and only if the curvatures sum to 4 pi and
+    Alexandrov's condition holds for every nonempty proper set of the rays;
+    uniqueness up to scaling about the origin); the equivalence of this
+    form with the textbook form over spherically convex sets is not
+    formalized. Curvature and solid angle are each defined as three times
+    a volume inside the unit ball (the normal cone, or the cone through a
+    face), which equals the corresponding area on the unit sphere. The
+    entry also proves Lemma 1 (the polar identity) and Theorem A
     (a) (existence and uniqueness of the fair die). Existence follows
     Oliker's variational route: a maximizer of his functional exists by
     continuity and coercivity, and at a maximizer every corner has the
     prescribed curvature. Uniqueness is by the maximum principle.
     Not formalized: Theorem A (b) (the symmetry group of the die) and (c)
-    (the centre as centroid), the finite test for equal masses, and the rest
+    (the centre of the die as its centroid; the Lean statements use the
+    origin, and the centroid is not formalized), the finite test for equal masses, and the rest
     of the paper (the enumeration). Audience: researchers on convex
     polytopes, the Minkowski and Alexandrov problems and fair dice, and
     Mathlib contributors.
@@ -71,6 +79,17 @@ sources:
       Gauss curvature, which alexandrov_iff and alexandrov_unique state and
       prove in the polytope case. The theorem is Alexandrov's; the entry
       claims only its Lean proof.
+    author_endorsement: "n/a"
+  - title: "Convex Polyhedra"
+    authors:
+      - "A. D. Alexandrov"
+    type: "book"
+    location: "Springer, Berlin, 2005 (English translation of the 1950 Russian edition)"
+    relationship: "background"
+    note: >-
+      Cited only (not read). The standard account of Alexandrov's theorem
+      on polyhedra with prescribed curvature at the vertices, stated there
+      for spherically convex sets.
     author_endorsement: "n/a"
   - title: "Embedding S^n into R^{n+1} with given integral Gauss curvature and optimal mass transport on S^n"
     authors:
